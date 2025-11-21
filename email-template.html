@@ -1,0 +1,123 @@
+<!-- 
+  Шаблон письма для калькулятора асфальтирования
+  Создайте чанк с именем "calcEmailTpl" и вставьте этот код
+-->
+
+<h2>Новая заявка с калькулятора асфальтирования</h2>
+
+<h3>Контактные данные:</h3>
+<p><strong>Имя:</strong> [[+name]]</p>
+<p><strong>Телефон:</strong> [[+phone]]</p>
+
+<h3>Параметры участка:</h3>
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse;">
+  <tr>
+    <td><strong>Длина участка:</strong></td>
+    <td>[[+length]] м</td>
+  </tr>
+  <tr>
+    <td><strong>Ширина участка:</strong></td>
+    <td>[[+width]] м</td>
+  </tr>
+  <tr>
+    <td><strong>Площадь участка:</strong></td>
+    <td>[[+area]] м²</td>
+  </tr>
+</table>
+
+<h3>Материалы и толщины слоёв:</h3>
+<table border="1" cellpadding="5" cellspacing="0" style="border-collapse: collapse;">
+  <tr>
+    <td><strong>Толщина песка:</strong></td>
+    <td>[[+sandThickness]] см</td>
+  </tr>
+  <tr>
+    <td><strong>Толщина щебня:</strong></td>
+    <td>[[+gravelThickness]] см</td>
+  </tr>
+  <tr>
+    <td><strong>Толщина асфальта:</strong></td>
+    <td>[[+asphaltThickness]] см</td>
+  </tr>
+  <tr>
+    <td><strong>Глубина выемки:</strong></td>
+    <td>[[+excavationDepth]] см</td>
+  </tr>
+  <tr>
+    <td><strong>Количество бордюров:</strong></td>
+    <td>[[+curbQuantity]] шт</td>
+  </tr>
+</table>
+
+<h3>Детальная смета:</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+  <thead style="background-color: #00c3b6; color: white;">
+    <tr>
+      <th>Материал / работа</th>
+      <th>Количество</th>
+      <th>Стоимость</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Устройство песчаного основания</td>
+      <td>[[+sandVolume]] м³</td>
+      <td>[[+sandCost]] руб</td>
+    </tr>
+    <tr>
+      <td>Устройство щебёночного основания</td>
+      <td>[[+gravelVolume]] м³</td>
+      <td>[[+gravelCost]] руб</td>
+    </tr>
+    <tr>
+      <td>Устройство слоя геотекстиля</td>
+      <td>[[+geotextileArea]] м²</td>
+      <td>[[+geotextileCost]] руб</td>
+    </tr>
+    <tr>
+      <td>Устройство геосетки</td>
+      <td>[[+geogridArea]] м²</td>
+      <td>[[+geogridCost]] руб</td>
+    </tr>
+    <tr>
+      <td>Устройство асфальтобетонного покрытия</td>
+      <td>[[+asphaltArea]] м²</td>
+      <td>[[+asphaltCost]] руб</td>
+    </tr>
+    <tr>
+      <td>Проливка основания битумной эмульсией</td>
+      <td>[[+emulsionVolume]] м²</td>
+      <td>[[+emulsionCost]] руб</td>
+    </tr>
+    <tr>
+      <td>Устройство бортового камня</td>
+      <td>[[+curbQuantityOut]] шт</td>
+      <td>[[+curbCost]] руб</td>
+    </tr>
+    <tr>
+      <td>Выемка и планировка грунта</td>
+      <td>[[+excavationVolume]] м³</td>
+      <td>[[+excavationCost]] руб</td>
+    </tr>
+    <tr>
+      <td>Погрузка и вывоз грунта</td>
+      <td>[[+soilRemovalVolume]] м³</td>
+      <td>[[+soilRemovalCost]] руб</td>
+    </tr>
+  </tbody>
+  <tfoot style="background-color: #f7f9fb; font-weight: bold;">
+    <tr>
+      <td colspan="2"><strong>ИТОГО ПО ОБЪЕКТУ:</strong></td>
+      <td><strong style="color: #00c3b6; font-size: 18px;">[[+totalCost]] руб</strong></td>
+    </tr>
+    <tr>
+      <td colspan="2"><strong>Стоимость за 1 м²:</strong></td>
+      <td><strong>[[+costPerSquare]] руб</strong></td>
+    </tr>
+  </tfoot>
+</table>
+
+<hr>
+
+<p><small>Страница: [[+contact_page_name]]<br>
+Ссылка: [[+contact_page_link]]</small></p>
