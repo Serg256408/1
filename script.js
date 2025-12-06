@@ -94,6 +94,32 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Custom notification function
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#4CAF50' : '#f44336'};
+        color: white;
+        padding: 16px 24px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 10000;
+        animation: slideIn 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
 function handleQuickCalcSubmit() {
     const formData = new FormData(document.getElementById('quickCalc'));
     const data = Object.fromEntries(formData);
@@ -103,7 +129,7 @@ function handleQuickCalcSubmit() {
     // Here you would send data to your backend
     // For MODX integration, this would be handled by FormIt/AjaxForm
     
-    alert('Спасибо! Мы отправили расчёт на ваш телефон.');
+    showNotification('Спасибо! Мы отправили расчёт на ваш телефон.');
     
     // Reset form
     document.getElementById('quickCalc').reset();
@@ -119,7 +145,7 @@ function handleQuizSubmit() {
     // Here you would send data to your backend
     // For MODX integration, this would be handled by FormIt/AjaxForm
     
-    alert('Спасибо! Мы подготовили для вас расчёт и отправим его в течение 15 минут.');
+    showNotification('Спасибо! Мы подготовили для вас расчёт и отправим его в течение 15 минут.');
     
     // Reset form
     document.getElementById('fullQuiz').reset();
@@ -135,7 +161,7 @@ function handleContactSubmit() {
     // Here you would send data to your backend
     // For MODX integration, this would be handled by FormIt/AjaxForm
     
-    alert('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
+    showNotification('Спасибо за заявку! Мы свяжемся с вами в ближайшее время.');
     
     // Reset form
     document.getElementById('contactForm').reset();

@@ -15,6 +15,7 @@
     --border-radius: 12px;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
+    --section-padding: 80px;
 }
 
 body {
@@ -132,7 +133,7 @@ body {
 
 /* Block 2: Calculator */
 .calculator-section {
-    padding: 80px 0;
+    padding: var(--section-padding) 0;
     background: #f8f9fa;
 }
 
@@ -164,6 +165,16 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(400px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(400px); opacity: 0; }
 }
 
 .form-label {
@@ -255,7 +266,7 @@ body {
 
 /* Block 3: Advantages */
 .advantages-section {
-    padding: 80px 0;
+    padding: var(--section-padding) 0;
     background: white;
 }
 
@@ -298,7 +309,7 @@ body {
 
 /* Block 4: Service Description */
 .service-description {
-    padding: 80px 0;
+    padding: var(--section-padding) 0;
     background: var(--dark-bg);
     color: white;
 }
@@ -340,7 +351,7 @@ body {
 
 /* Block 5: Pavement Layers */
 .pavement-layers {
-    padding: 80px 0;
+    padding: var(--section-padding) 0;
     background: #f8f9fa;
 }
 
@@ -430,7 +441,7 @@ body {
 
 /* Block 6: Pricing */
 .pricing-section {
-    padding: 80px 0;
+    padding: var(--section-padding) 0;
     background: white;
 }
 
@@ -526,7 +537,7 @@ body {
 
 /* Block 7: Stages */
 .stages-section {
-    padding: 80px 0;
+    padding: var(--section-padding) 0;
     background: #f8f9fa;
 }
 
@@ -585,7 +596,7 @@ body {
 
 /* Block 8: Portfolio */
 .portfolio-section {
-    padding: 80px 0;
+    padding: var(--section-padding) 0;
     background: white;
 }
 
@@ -644,7 +655,7 @@ body {
 
 /* Block 9: Reviews */
 .reviews-section {
-    padding: 80px 0;
+    padding: var(--section-padding) 0;
     background: #f8f9fa;
 }
 
@@ -717,7 +728,7 @@ body {
 
 /* Block 10: Why Us */
 .why-us-section {
-    padding: 80px 0;
+    padding: var(--section-padding) 0;
     background: var(--dark-bg);
     color: white;
 }
@@ -785,7 +796,7 @@ body {
 
 /* Block 11: Quiz */
 .quiz-section {
-    padding: 80px 0;
+    padding: var(--section-padding) 0;
     background: white;
 }
 
@@ -914,7 +925,7 @@ body {
 
 /* Block 12: Contact Form */
 .contact-form-section {
-    padding: 80px 0;
+    padding: var(--section-padding) 0;
     background: #f8f9fa;
 }
 
@@ -983,7 +994,7 @@ body {
 
 /* Block 13: Footer */
 .footer-section {
-    padding: 80px 0 40px;
+    padding: var(--section-padding) 0 40px;
     background: var(--dark-bg);
     color: white;
 }

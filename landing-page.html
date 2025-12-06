@@ -90,8 +90,8 @@
                             <span class="label-icon">📱</span>
                             Телефон для отправки расчёта
                         </label>
-                        <input type="tel" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required>
-                        <button type="submit" class="btn btn-primary">Получить расчёт</button>
+                        <input type="tel" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required aria-required="true" aria-label="Номер телефона">
+                        <button type="submit" class="btn btn-primary" aria-label="Отправить форму и получить расчёт стоимости">Получить расчёт</button>
                     </div>
                 </form>
             </div>
@@ -782,9 +782,9 @@
                     </div>
                 </div>
                 <div class="footer-map">
-                    <div id="map" style="width: 100%; height: 400px; background: #e0e0e0; border-radius: 8px;">
-                        <!-- Здесь будет карта Яндекс -->
-                        <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU" type="text/javascript"></script>
+                    <div id="map" style="width: 100%; height: 400px; background: #e0e0e0; border-radius: 8px;" role="application" aria-label="Карта с местоположением офиса">
+                        <!-- Для интеграции карты добавьте свой API ключ Яндекс.Карт -->
+                        <!-- <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU" type="text/javascript"></script> -->
                     </div>
                 </div>
             </div>
