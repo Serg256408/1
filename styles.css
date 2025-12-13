@@ -1,0 +1,348 @@
+/* ===============================
+   Глобальные стили
+   =============================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #111827;
+  background: #f9fafb;
+}
+
+/* Контейнер */
+.tc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===============================
+   Блок 8 — Примеры асфальтирования стоянок
+   =============================== */
+
+.tc-cases {
+  background: #ffffff;
+  padding: 60px 0;
+  color: #111827;
+}
+
+.tc-cases__title {
+  margin: 0 0 12px 0;
+  font-size: 36px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: left;
+}
+
+.tc-cases__subtitle {
+  margin: 0 0 40px 0;
+  color: #64748b;
+  font-size: 18px;
+  line-height: 1.6;
+  font-weight: 400;
+  text-align: left;
+}
+
+/* Сетка карточек: 3 в ряд (десктоп), 2 (планшет), 1 (мобилка) */
+.tc-cases__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* ===============================
+   Карточка кейса
+   =============================== */
+
+.tc-case {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+.tc-case:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  border-color: #cbd5e1;
+}
+
+/* Фото */
+.tc-case__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.tc-case__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tc-case:hover .tc-case__media img {
+  transform: scale(1.05);
+}
+
+/* Бейдж типа стоянки */
+.tc-case__tag {
+  position: absolute;
+  left: 14px;
+  top: 14px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  color: #0f172a;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Контент карточки */
+.tc-case__body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex-grow: 1;
+}
+
+.tc-case__title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.3;
+  color: #0f172a;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Факты (площадь и срок) */
+.tc-case__facts {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.tc-fact {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  transition: background 0.2s ease;
+}
+
+.tc-case:hover .tc-fact {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
+
+.tc-fact dt {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0 0 6px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+
+.tc-fact dd {
+  margin: 0;
+  font-size: 16px;
+  color: #0f172a;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+/* Особенность проекта */
+.tc-case__note {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #64748b;
+  padding-top: 4px;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* ===============================
+   Адаптивность
+   =============================== */
+
+/* Планшет: 2 колонки */
+@media (max-width: 1199px) {
+  .tc-cases__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  
+  .tc-cases {
+    padding: 50px 0;
+  }
+  
+  .tc-cases__title {
+    font-size: 32px;
+  }
+  
+  .tc-cases__subtitle {
+    font-size: 17px;
+    margin-bottom: 32px;
+  }
+}
+
+/* Мобилка: 1 колонка */
+@media (max-width: 767px) {
+  .tc-cases {
+    padding: 40px 0;
+  }
+  
+  .tc-cases__title {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+  
+  .tc-cases__subtitle {
+    font-size: 16px;
+    margin-bottom: 28px;
+  }
+  
+  .tc-cases__grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .tc-case__body {
+    padding: 16px;
+    gap: 12px;
+  }
+  
+  .tc-case__title {
+    font-size: 17px;
+  }
+  
+  .tc-fact {
+    padding: 10px 12px;
+  }
+  
+  .tc-fact dd {
+    font-size: 15px;
+  }
+  
+  .tc-case__note {
+    font-size: 13px;
+  }
+  
+  .tc-case__tag {
+    left: 12px;
+    top: 12px;
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 479px) {
+  .tc-container {
+    padding: 0 16px;
+  }
+  
+  .tc-cases {
+    padding: 36px 0;
+  }
+  
+  .tc-cases__title {
+    font-size: 24px;
+  }
+  
+  .tc-cases__subtitle {
+    font-size: 15px;
+  }
+  
+  .tc-case__body {
+    padding: 14px;
+  }
+}
+
+/* ===============================
+   Дополнительные улучшения
+   =============================== */
+
+/* Улучшенная типографика */
+@media (min-width: 1400px) {
+  .tc-container {
+    max-width: 1320px;
+  }
+  
+  .tc-cases__title {
+    font-size: 40px;
+  }
+  
+  .tc-cases__subtitle {
+    font-size: 19px;
+  }
+}
+
+/* Анимация появления карточек */
+@media (prefers-reduced-motion: no-preference) {
+  .tc-case {
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+  }
+  
+  .tc-case:nth-child(1) { animation-delay: 0.1s; }
+  .tc-case:nth-child(2) { animation-delay: 0.2s; }
+  .tc-case:nth-child(3) { animation-delay: 0.3s; }
+  .tc-case:nth-child(4) { animation-delay: 0.4s; }
+  .tc-case:nth-child(5) { animation-delay: 0.5s; }
+  .tc-case:nth-child(6) { animation-delay: 0.6s; }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Печать */
+@media print {
+  .tc-cases {
+    padding: 20px 0;
+  }
+  
+  .tc-case {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  .tc-case:hover {
+    transform: none;
+  }
+}
