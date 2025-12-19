@@ -1,0 +1,1021 @@
+<!-- Калькулятор асфальтирования для MODX -->
+<!-- Просто вставьте этот код в чанк или напрямую на страницу -->
+
+<style>
+/* Калькулятор асфальтирования – стиль ТРАНСКОМ / asfaltsneg.ru (тёмный + бирюзовый) */
+
+.calculator {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+}
+.calculator .calc-header {
+  background: rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(4px);
+  color: #ffffff !important;
+}
+
+
+
+/* Шапка калькулятора */
+
+
+
+.calc-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 80px;
+  height: 3px;
+  background: #00c3b6;
+}
+
+.calculator h2 {
+  margin: 0 0 8px 0;
+  font-size: 30px;
+  font-weight: 800;
+  color: #00c3b6;
+  letter-spacing: 0.3px;
+}
+
+.calc-subtitle {
+  font-size: 14px;
+  margin: 0;
+  color: rgba(255,255,255,0.8);
+  font-weight: 400;
+}
+
+/* Тело калькулятора */
+
+.calc-body {
+  padding: 32px 30px 34px;
+  background: #f4f6f8;
+}
+
+/* Табы типов нагрузки */
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+  padding: 0;
+}
+
+.tabs-title {
+  grid-column: 1 / -1;
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.tab {
+  padding: 16px 14px;
+  background: #ffffff;
+  border: 1px solid #d6dde3;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #344452;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.tab:hover {
+  background: #e9fbf9;
+  border-color: #00c3b6;
+  color: #007e76;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,195,182,0.25);
+}
+
+.tab.active {
+  background: #00c3b6;
+  border-color: #00c3b6;
+  color: #ffffff;
+  box-shadow: 0 5px 16px rgba(0,195,182,0.35);
+}
+
+/* Секции */
+
+.section {
+  margin-bottom: 22px;
+  padding: 22px 22px 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e0e5ea;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18px;
+  bottom: 18px;
+  width: 4px;
+  border-radius: 0 6px 6px 0;
+  background: #00c3b6;
+}
+
+.section:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eef1f4;
+  position: relative;
+  z-index: 1;
+}
+
+.section-icon {
+  width: 34px;
+  height: 34px;
+  background: #00c3b6;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.section h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1e2a35;
+}
+
+.section-description {
+  color: #6b7680;
+  font-size: 13px;
+  margin: 0 0 16px;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+/* Группы полей */
+
+.input-group {
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #293544;
+}
+
+.input-group input[type="number"],
+.input-group input[type="tel"],
+.input-group input[type="text"],
+.input-group select {
+  width: 100%;
+  padding: 9px 11px;
+  border: 1px solid #d0d7df;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #222;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: #00c3b6;
+  box-shadow: 0 0 0 1px rgba(0,195,182,0.2);
+  background: #fbfefe;
+}
+
+.input-group input:read-only {
+  background: #f3f5f7;
+  cursor: not-allowed;
+  font-weight: 600;
+  color: #00a79b;
+}
+
+/* Слайдеры */
+
+.slider-container {
+  position: relative;
+}
+
+.slider-container label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #293544;
+}
+
+.slider-container label span {
+  background: #00c3b6;
+  color: white;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 13px;
+  min-width: 70px;
+  text-align: center;
+}
+
+.slider-container input[type="range"] {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: #dde3ea;
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+/* WebKit */
+.slider-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #00c3b6;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,195,182,0.4);
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+  box-shadow: 0 3px 10px rgba(0,195,182,0.6);
+}
+
+/* Firefox */
+.slider-container input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #00c3b6;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,195,182,0.4);
+}
+
+/* Чекбоксы */
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  background: #f8fafb;
+  border: 1px solid #d6dde3;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 10px;
+}
+
+.checkbox-group:hover {
+  border-color: #00c3b6;
+  background: #e9fbf9;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #00c3b6;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.checkbox-group label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #263445;
+  cursor: pointer;
+  flex: 1;
+}
+
+/* Таблица результатов */
+
+.results-table {
+  margin: 30px 0 0 0;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+.results-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e2a35;
+  margin-bottom: 16px;
+  text-align: left;
+}
+
+#results-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+#results-table thead {
+  background: #00c3b6;
+  color: #ffffff;
+}
+
+#results-table thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+#results-table tbody tr {
+  border-bottom: 1px solid #eef1f4;
+  transition: background 0.15s ease;
+}
+
+#results-table tbody tr:hover {
+  background: #f3fbfa;
+}
+
+#results-table tbody td {
+  padding: 10px 16px;
+  font-size: 13px;
+  color: #263445;
+}
+
+#results-table tbody td:first-child {
+  font-weight: 600;
+}
+
+#results-table tfoot .total-row {
+  background: #f7f9fb;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+#results-table tfoot .total-row td {
+  padding: 11px 16px;
+  color: #00a79b;
+}
+
+/* Итоговая стоимость */
+
+.total-cost-highlight {
+  background: #111111;
+  color: #ffffff;
+  padding: 22px 18px;
+  border-radius: 12px;
+  margin-top: 18px;
+  text-align: center;
+}
+
+.total-cost-label {
+  font-size: 13px;
+  margin-bottom: 6px;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.total-cost-value {
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 4px;
+  color: #00c3b6;
+}
+
+.cost-per-meter {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* Форма контактов */
+
+.contact-form {
+  margin-top: 26px;
+  padding: 20px 18px 22px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px dashed #00c3b6;
+}
+
+.contact-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e2a35;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+/* Кнопка отправки */
+
+.action-button {
+  width: 100%;
+  padding: 12px 24px;
+  background: #00c3b6;
+  border: none;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: none;
+  letter-spacing: 0.03em;
+  box-shadow: 0 8px 22px rgba(0,195,182,0.45);
+}
+
+.action-button:hover {
+  background: #009e93;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(0,158,147,0.55);
+}
+
+.action-button:active {
+  transform: translateY(0);
+  box-shadow: 0 5px 16px rgba(0,158,147,0.5);
+}
+
+/* Скрытые данные */
+
+.hidden-data {
+  display: none;
+}
+
+/* Адаптивность */
+
+@media (max-width: 900px) {
+  .calc-body {
+    padding: 24px 18px 26px;
+  }
+}
+
+@media (max-width: 768px) {
+  .calculator {
+    margin: 24px 10px;
+  }
+  
+  .calc-header {
+    padding: 26px 18px;
+  }
+  
+  .calculator h2 {
+    font-size: 24px;
+  }
+  
+  .calc-body {
+    padding: 22px 16px 24px;
+  }
+  
+  .tabs {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .section {
+    padding: 18px 16px 18px;
+  }
+  
+  .section::before {
+    top: 14px;
+    bottom: 14px;
+  }
+  
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .total-cost-value {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calculator h2 {
+    font-size: 22px;
+  }
+  
+  .section-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+  
+  .total-cost-value {
+    font-size: 24px;
+  }
+}
+.calculator .calc-header {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+}
+.calculator .calc-header {
+    text-align: center !important;
+}
+
+.calculator .calc-header h2 {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.calculator .calc-header .calc-subtitle {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+</style>
+
+<div class="calculator">
+  <div class="calc-header">
+    <h2>Калькулятор асфальтирования</h2>
+    <p class="calc-subtitle">Рассчитайте ориентировочную стоимость работ и материалов</p>
+  </div>
+  
+  <div class="calc-body">
+    <div class="tabs">
+      <div class="tabs-title">Выберите тип покрытия по нагрузке</div>
+      <div class="tab active" data-type="pedestrian" onclick="switchTab(this)">
+        <strong>Пешеходное</strong><br><small style="opacity:0.7">Тротуары, дорожки</small>
+      </div>
+      <div class="tab" data-type="car" onclick="switchTab(this)">
+        <strong>Легковой транспорт</strong><br><small style="opacity:0.7">Парковки, проезды</small>
+      </div>
+      <div class="tab" data-type="truck" onclick="switchTab(this)">
+        <strong>Грузовая нагрузка</strong><br><small style="opacity:0.7">Дороги, площадки</small>
+      </div>
+    </div>
+    
+    <form id="calculationForm" action="[[~[[*id]]]]" method="post">
+      [[!utmMark]]
+      <input type="hidden" name="contact_page_name" value="[[*pagetitle]]" />
+      <input type="hidden" name="contact_page_link" value="[[*uri]]" />
+      
+      <!-- 1. Размеры -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon">1</div>
+          <h3>Размеры участка</h3>
+        </div>
+        <div class="section-description">
+          Укажите длину и ширину площадки — система автоматически посчитает площадь в м².
+        </div>
+        <div class="input-group">
+          <label for="length">Длина (м)</label>
+          <input type="number" id="length" name="length" value="10" min="0" step="0.1" oninput="calculateArea()">
+        </div>
+        <div class="input-group">
+          <label for="width">Ширина (м)</label>
+          <input type="number" id="width" name="width" value="5" min="0" step="0.1" oninput="calculateArea()">
+        </div>
+        <div class="input-group">
+          <label for="area">Площадь (м²)</label>
+          <input type="number" id="area" name="area" readonly>
+        </div>
+      </div>
+      
+      <!-- 2. Песок -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon">2</div>
+          <h3>Песчаный слой</h3>
+        </div>
+        <div class="section-description">
+          Песчаное основание выравнивает и дренирует основание под щебень и асфальт.
+        </div>
+        <div class="input-group slider-container">
+          <label>Толщина слоя <span id="sandValue">20 см</span></label>
+          <input type="range" id="sandThickness" name="sandThickness" min="0" max="50" value="20" step="5" oninput="updateSand(this.value)">
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="sandCompaction" name="sandCompaction" onchange="calculate()">
+          <label for="sandCompaction">Уплотнение песка виброплитой / катком</label>
+        </div>
+      </div>
+      
+      <!-- 3. Щебень -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon">3</div>
+          <h3>Щебёночный слой</h3>
+        </div>
+        <div class="section-description">
+          Щебень формирует несущую основу под асфальт. Для грузовой техники применяется более мощный слой.
+        </div>
+        <div class="input-group">
+          <label for="gravelType">Тип щебня</label>
+          <select id="gravelType" name="gravelType" onchange="calculate()">
+            <option value="limestone">Известняковый (эконом)</option>
+            <option value="granite">Гранитный (повышенная прочность)</option>
+            <option value="secondary">Вторичный</option>
+            <option value="gravel">Гравийный</option>
+          </select>
+        </div>
+        <div class="input-group slider-container">
+          <label>Толщина слоя <span id="gravelValue">30 см</span></label>
+          <input type="range" id="gravelThickness" name="gravelThickness" min="0" max="100" value="30" step="5" oninput="updateGravel(this.value)">
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="gravelCompaction" name="gravelCompaction" onchange="calculate()">
+          <label for="gravelCompaction">Уплотнение щебня катком</label>
+        </div>
+      </div>
+      
+      <!-- 4. Геоматериалы -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon">4</div>
+          <h3>Геоматериалы</h3>
+        </div>
+        <div class="section-description">
+          Геотекстиль и геосетка разделяют слои и препятствуют просадкам на мягких грунтах.
+        </div>
+        <div class="input-group">
+          <label for="geotextile">Геотекстиль (г/м²)</label>
+          <select id="geotextile" name="geotextile" onchange="calculate()">
+            <option value="0">Не использовать</option>
+            <option value="200">200 (лёгкая нагрузка)</option>
+            <option value="300">300 (средняя нагрузка)</option>
+            <option value="400">400 (высокая нагрузка)</option>
+          </select>
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="geogrid" name="geogrid" onchange="calculate()">
+          <label for="geogrid">Геосетка под щебень</label>
+        </div>
+      </div>
+      
+      <!-- 5. Асфальт -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon">5</div>
+          <h3>Асфальтовое покрытие</h3>
+        </div>
+        <div class="section-description">
+          Подберите марку асфальта и толщину слоя в зависимости от назначения участка.
+        </div>
+        <div class="input-group">
+          <label for="asphaltType">Тип асфальта</label>
+          <select id="asphaltType" name="asphaltType" onchange="calculate()">
+            <option value="sand_type_g2">Песчаный Г2 (тротуары)</option>
+            <option value="fine_type_b2">Мелкозернистый Б2 (универсальный)</option>
+            <option value="type_v2">Тип В2 (дороги)</option>
+            <option value="type_a1">Мелкозернистый А1 (премиум)</option>
+            <option value="dense_coarse_b2">Крупнозернистый Б2 (основание)</option>
+          </select>
+        </div>
+        <div class="input-group slider-container">
+          <label>Толщина слоя <span id="asphaltValue">5 см</span></label>
+          <input type="range" id="asphaltThickness" name="asphaltThickness" min="3" max="15" value="5" step="1" oninput="updateAsphalt(this.value)">
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="bitumenEmulsion" name="bitumenEmulsion" onchange="calculate()">
+          <label for="bitumenEmulsion">Проливка основания битумной эмульсией</label>
+        </div>
+      </div>
+      
+      <!-- 6. Бордюры -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon">6</div>
+          <h3>Бордюры</h3>
+        </div>
+        <div class="section-description">
+          Бордюры фиксируют кромку покрытия и придают объекту аккуратный вид.
+        </div>
+        <div class="input-group">
+          <label for="curbType">Тип бордюра</label>
+          <select id="curbType" name="curbType" onchange="calculate()">
+            <option value="road">Дорожный</option>
+            <option value="garden">Садовый</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="curbQuantity">Количество (шт)</label>
+          <input type="number" id="curbQuantity" name="curbQuantity" min="0" value="0" step="1" oninput="calculate()">
+        </div>
+      </div>
+      
+      <!-- 7. Земляные работы -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon">7</div>
+          <h3>Земляные работы</h3>
+        </div>
+        <div class="section-description">
+          Выемка существующего грунта под конструкцию основания и, при необходимости, вывоз.
+        </div>
+        <div class="input-group slider-container">
+          <label>Глубина выемки <span id="excavationValue">0 см</span></label>
+          <input type="range" id="excavationDepth" name="excavationDepth" min="0" max="200" value="0" step="5" oninput="updateExcavation(this.value)">
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="soilRemoval" name="soilRemoval" onchange="calculate()">
+          <label for="soilRemoval">Нужен вывоз грунта</label>
+        </div>
+      </div>
+      
+      <!-- Скрытые поля для письма -->
+      <div class="hidden-data">
+        <input type="hidden" id="hiddenSandVolume" name="sandVolume">
+        <input type="hidden" id="hiddenSandCost" name="sandCost">
+        <input type="hidden" id="hiddenGravelVolume" name="gravelVolume">
+        <input type="hidden" id="hiddenGravelCost" name="gravelCost">
+        <input type="hidden" id="hiddenGeotextileArea" name="geotextileArea">
+        <input type="hidden" id="hiddenGeotextileCost" name="geotextileCost">
+        <input type="hidden" id="hiddenGeogridArea" name="geogridArea">
+        <input type="hidden" id="hiddenGeogridCost" name="geogridCost">
+        <input type="hidden" id="hiddenAsphaltArea" name="asphaltArea">
+        <input type="hidden" id="hiddenAsphaltCost" name="asphaltCost">
+        <input type="hidden" id="hiddenEmulsionVolume" name="emulsionVolume">
+        <input type="hidden" id="hiddenEmulsionCost" name="emulsionCost">
+        <input type="hidden" id="hiddenCurbQuantity" name="curbQuantityOut">
+        <input type="hidden" id="hiddenCurbCost" name="curbCost">
+        <input type="hidden" id="hiddenExcavationVolume" name="excavationVolume">
+        <input type="hidden" id="hiddenExcavationCost" name="excavationCost">
+        <input type="hidden" id="hiddenSoilRemovalVolume" name="soilRemovalVolume">
+        <input type="hidden" id="hiddenSoilRemovalCost" name="soilRemovalCost">
+        <input type="hidden" id="hiddenTotalCost" name="totalCost">
+        <input type="hidden" id="hiddenCostPerSquare" name="costPerSquare">
+      </div>
+      
+      <!-- Результаты -->
+      <div class="results-table">
+        <h3 class="results-title">Предварительная смета по объекту</h3>
+        <table id="results-table">
+          <thead>
+            <tr><th>Материал / работа</th><th>Количество</th><th>Стоимость</th></tr>
+          </thead>
+          <tbody>
+  <tr>
+    <td>Устройство песчаного основания (материал + работы)</td>
+    <td><span id="sandVolume">0</span> м³</td>
+    <td><span id="sandCost">0</span> руб</td>
+  </tr>
+  <tr>
+    <td>Устройство щебёночного основания (материал + работы)</td>
+    <td><span id="gravelVolume">0</span> м³</td>
+    <td><span id="gravelCost">0</span> руб</td>
+  </tr>
+  <tr>
+    <td>Устройство слоя геотекстиля</td>
+    <td><span id="geotextileArea">0</span> м²</td>
+    <td><span id="geotextileCost">0</span> руб</td>
+  </tr>
+  <tr>
+    <td>Устройство геосетки</td>
+    <td><span id="geogridArea">0</span> м²</td>
+    <td><span id="geogridCost">0</span> руб</td>
+  </tr>
+  <tr>
+    <td>Устройство асфальтобетонного покрытия</td>
+    <td><span id="asphaltArea">0</span> м²</td>
+    <td><span id="asphaltCost">0</span> руб</td>
+  </tr>
+  <tr>
+    <td>Проливка основания битумной эмульсией</td>
+    <td><span id="emulsionVolume">0</span> м²</td>
+    <td><span id="emulsionCost">0</span> руб</td>
+  </tr>
+  <tr>
+    <td>Устройство бортового камня</td>
+    <td><span id="curbQuantityOut">0</span> шт</td>
+    <td><span id="curbCost">0</span> руб</td>
+  </tr>
+  <tr>
+    <td>Выемка и планировка грунта</td>
+    <td><span id="excavationVolume">0</span> м³</td>
+    <td><span id="excavationCost">0</span> руб</td>
+  </tr>
+  <tr>
+    <td>Погрузка и вывоз грунта</td>
+    <td><span id="soilRemovalVolume">0</span> м³</td>
+    <td><span id="soilRemovalCost">0</span> руб</td>
+  </tr>
+</tbody>
+
+          <tfoot>
+            <tr class="total-row"><td colspan="2">Итого по объекту</td><td><span id="totalCost">0</span> руб</td></tr>
+            <tr class="total-row"><td colspan="2">Ориентировочно за 1 м²</td><td><span id="costPerSquare">0</span> руб</td></tr>
+          </tfoot>
+        </table>
+        
+        <div class="total-cost-highlight">
+          <div class="total-cost-label">Общая стоимость</div>
+          <div class="total-cost-value"><span id="totalCostBig">0</span> руб</div>
+          <div class="cost-per-meter">За 1 м²: <span id="costPerMeterBig">0</span> руб</div>
+        </div>
+      </div>
+      
+      <!-- Контактная форма -->
+      <div class="contact-form">
+        <h3 class="contact-title">Оставьте запрос — перезвоним и уточним смету</h3>
+        <div class="contact-grid">
+          <div class="input-group">
+            <label for="customerName">Ваше имя</label>
+            <input type="text" id="customerName" name="name" placeholder="Как к вам обращаться?">
+          </div>
+          <div class="input-group">
+            <label for="customerPhone">Телефон</label>
+            <input type="tel" id="customerPhone" name="phone" placeholder="+7 (___) ___-__-__">
+          </div>
+        </div>
+        <button type="submit" class="action-button">Получить расчёт от «Транском»</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const lengthInput = document.getElementById('length'),
+        widthInput  = document.getElementById('width'),
+        areaInput   = document.getElementById('area'),
+        sandTh      = document.getElementById('sandThickness'),
+        gravelTh    = document.getElementById('gravelThickness'),
+        asphaltTh   = document.getElementById('asphaltThickness'),
+        excavTh     = document.getElementById('excavationDepth'),
+        geotextile  = document.getElementById('geotextile'),
+        geogrid     = document.getElementById('geogrid'),
+        gravelType  = document.getElementById('gravelType'),
+        asphaltType = document.getElementById('asphaltType'),
+        sandComp    = document.getElementById('sandCompaction'),
+        gravelComp  = document.getElementById('gravelCompaction'),
+        bitEmul     = document.getElementById('bitumenEmulsion'),
+        soilRem     = document.getElementById('soilRemoval'),
+        curbType    = document.getElementById('curbType'),
+        curbQty     = document.getElementById('curbQuantity');
+  
+  const out = id => document.getElementById(id);
+  
+  function updateSand(v){ out('sandValue').textContent=v+' см'; updateExcavationDepth(); calculate(); }
+  function updateGravel(v){ out('gravelValue').textContent=v+' см'; updateExcavationDepth(); calculate(); }
+  function updateAsphalt(v){ out('asphaltValue').textContent=v+' см'; calculate(); }
+  function updateExcavation(v){ out('excavationValue').textContent=v+' см'; calculate(); }
+  
+  function updateExcavationDepth() {
+    const sandV = parseFloat(sandTh.value)||0, gravelV = parseFloat(gravelTh.value)||0;
+    excavTh.value = sandV+gravelV; updateExcavation(excavTh.value);
+  }
+  
+  const presets={
+    pedestrian:{sand:15,gravel:7,geo:200,asphalt:4,emul:false,excav:26,sandComp:true,gravelComp:true,asphaltType:'sand_type_g2'},
+    car:{sand:20,gravel:10,geo:300,asphalt:5,emul:false,excav:35,sandComp:true,gravelComp:true,asphaltType:'type_v2'},
+    truck:{sand:35,gravel:25,geo:400,asphalt:11,emul:true,excav:66,sandComp:true,gravelComp:true,asphaltType:'type_a1'}
+  };
+  
+  function switchTab(el){
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    el.classList.add('active');
+    applyPreset(el.dataset.type);
+  }
+  
+  function applyPreset(n){
+    const p=presets[n]; if(!p)return;
+    sandTh.value=p.sand; updateSand(p.sand);
+    gravelTh.value=p.gravel; updateGravel(p.gravel);
+    geotextile.value=p.geo;
+    asphaltTh.value=p.asphalt; updateAsphalt(p.asphalt);
+    asphaltType.value=p.asphaltType;
+    bitEmul.checked=p.emul;
+    sandComp.checked=p.sandComp;
+    gravelComp.checked=p.gravelComp;
+    excavTh.value=p.excav; updateExcavation(p.excav);
+    soilRem.checked=true;
+    calculateArea();
+  }
+  
+  function calculateArea(){
+    const a=parseFloat(lengthInput.value)||0,
+          b=parseFloat(widthInput.value)||0;
+    areaInput.value=(a*b).toFixed(2);
+    calculate();
+  }
+  
+  function calculate(){
+    const area=parseFloat(areaInput.value)||0;
+    
+    let sv=area*(parseFloat(sandTh.value)/100);
+    if(sandComp.checked) sv*=1.2;
+    const sc=sv*2000;
+    out('sandVolume').textContent=sv.toFixed(2);
+    out('sandCost').textContent=sc.toFixed(0);
+    out('hiddenSandVolume').value=sv.toFixed(2);
+    out('hiddenSandCost').value=sc.toFixed(0);
+    
+    let gv=area*(parseFloat(gravelTh.value)/100);
+    if(gravelComp.checked) gv*=1.3;
+    const priceG={limestone:4500,granite:5500,secondary:3500,gravel:5500};
+    const gc=gv*priceG[gravelType.value];
+    out('gravelVolume').textContent=gv.toFixed(2);
+    out('gravelCost').textContent=gc.toFixed(0);
+    out('hiddenGravelVolume').value=gv.toFixed(2);
+    out('hiddenGravelCost').value=gc.toFixed(0);
+    
+    const geoa=(parseInt(geotextile.value)>0?area:0);
+    const geoc=geoa*(geotextile.value==200?40:geotextile.value==300?60:geotextile.value==400?80:0);
+    out('geotextileArea').textContent=geoa.toFixed(2);
+    out('geotextileCost').textContent=geoc.toFixed(0);
+    out('hiddenGeotextileArea').value=geoa.toFixed(2);
+    out('hiddenGeotextileCost').value=geoc.toFixed(0);
+    
+    const gri=geogrid.checked?area:0;
+    const grc=gri*120;
+    out('geogridArea').textContent=gri.toFixed(2);
+    out('geogridCost').textContent=grc.toFixed(0);
+    out('hiddenGeogridArea').value=gri.toFixed(2);
+    out('hiddenGeogridCost').value=grc.toFixed(0);
+    
+    const ath=parseFloat(asphaltTh.value)||0;
+    const ap=1100+(ath-5)*220;
+    const ac=area*ap;
+    out('asphaltArea').textContent=area.toFixed(2);
+    out('asphaltCost').textContent=ac.toFixed(0);
+    out('hiddenAsphaltArea').value=area.toFixed(2);
+    out('hiddenAsphaltCost').value=ac.toFixed(0);
+    
+    const emVol=bitEmul.checked?area:0;
+    const em=emVol*30;
+    out('emulsionVolume').textContent=emVol.toFixed(2);
+    out('emulsionCost').textContent=em.toFixed(0);
+    out('hiddenEmulsionVolume').value=emVol.toFixed(2);
+    out('hiddenEmulsionCost').value=em.toFixed(0);
+    
+    const cq=parseInt(curbQty.value)||0;
+    const cp=curbType.value==='road'?1800:1000;
+    const cc=cq*cp;
+    out('curbQuantityOut').textContent=cq;
+    out('curbCost').textContent=cc.toFixed(0);
+    out('hiddenCurbQuantity').value=cq;
+    out('hiddenCurbCost').value=cc.toFixed(0);
+    
+    let exv=area*(parseFloat(excavTh.value)/100)*1.3;
+    const exc=exv*600;
+    const src=soilRem.checked?exv*600:0;
+    out('excavationVolume').textContent=exv.toFixed(2);
+    out('excavationCost').textContent=exc.toFixed(0);
+    out('soilRemovalVolume').textContent=exv.toFixed(2);
+    out('soilRemovalCost').textContent=src.toFixed(0);
+    out('hiddenExcavationVolume').value=exv.toFixed(2);
+    out('hiddenExcavationCost').value=exc.toFixed(0);
+    out('hiddenSoilRemovalVolume').value=exv.toFixed(2);
+    out('hiddenSoilRemovalCost').value=src.toFixed(0);
+    
+    const total=sc+gc+geoc+grc+ac+em+cc+exc+src;
+    const perSquare=area?total/area:0;
+    out('totalCost').textContent=total.toFixed(0);
+    out('costPerSquare').textContent=perSquare.toFixed(0);
+    out('totalCostBig').textContent=total.toFixed(0);
+    out('costPerMeterBig').textContent=perSquare.toFixed(0);
+    out('hiddenTotalCost').value=total.toFixed(0);
+    out('hiddenCostPerSquare').value=perSquare.toFixed(0);
+  }
+  
+  window.addEventListener('load',function(){
+    calculateArea();
+    const activeTab = document.querySelector('.tab.active');
+    if (activeTab) activeTab.click();
+  });
+</script>
