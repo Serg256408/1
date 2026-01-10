@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Асфальтирование парковок в Москве и МО - Транском</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Блок 1: Hero Banner -->
+    <section class="hero-banner">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Асфальтирование парковок в Москве и МО</h1>
+            <p class="hero-subtitle">Работаем с 2014 года. 5 бригад. Геодезист и проектировщик в штате.</p>
+            <div class="hero-buttons">
+                <a href="#calculator" class="btn btn-primary">Рассчитать стоимость</a>
+                <a href="#portfolio" class="btn btn-secondary">Портфолио</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 2: Мини-калькулятор -->
+    <section class="calculator-section" id="calculator">
+        <div class="container">
+            <div class="calculator-card">
+                <h2 class="calculator-title">Быстрый расчёт стоимости за 15 секунд</h2>
+                <form class="calculator-form" id="quickCalc">
+                    <div class="form-step active" data-step="1">
+                        <label class="form-label">
+                            <span class="label-icon">🏢</span>
+                            Тип объекта
+                        </label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="objectType" value="parking">
+                                <span class="radio-label">Парковка</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="objectType" value="territory">
+                                <span class="radio-label">Территория</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="objectType" value="playground">
+                                <span class="radio-label">Площадка</span>
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(2)">Далее</button>
+                    </div>
+
+                    <div class="form-step" data-step="2">
+                        <label class="form-label">
+                            <span class="label-icon">📏</span>
+                            Площадь (м²)
+                        </label>
+                        <input type="number" name="area" class="form-input" placeholder="Введите площадь">
+                        <div class="area-presets">
+                            <button type="button" class="preset-btn" onclick="setArea(100)">100 м²</button>
+                            <button type="button" class="preset-btn" onclick="setArea(300)">300 м²</button>
+                            <button type="button" class="preset-btn" onclick="setArea(500)">500 м²</button>
+                            <button type="button" class="preset-btn" onclick="setArea(1000)">1000 м²</button>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(3)">Далее</button>
+                    </div>
+
+                    <div class="form-step" data-step="3">
+                        <label class="form-label">
+                            <span class="label-icon">🏗️</span>
+                            Основание
+                        </label>
+                        <div class="radio-group">
+                            <label class="radio-card">
+                                <input type="radio" name="foundation" value="ground">
+                                <span class="radio-label">Грунт</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="foundation" value="gravel">
+                                <span class="radio-label">Щебень</span>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="foundation" value="old-asphalt">
+                                <span class="radio-label">Старый асфальт</span>
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="nextStep(4)">Далее</button>
+                    </div>
+
+                    <div class="form-step" data-step="4">
+                        <label class="form-label">
+                            <span class="label-icon">📱</span>
+                            Телефон для отправки расчёта
+                        </label>
+                        <input type="tel" name="phone" class="form-input" placeholder="+7 (___) ___-__-__" required aria-required="true" aria-label="Номер телефона">
+                        <button type="submit" class="btn btn-primary" aria-label="Отправить форму и получить расчёт стоимости">Получить расчёт</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 3: Преимущества компании -->
+    <section class="advantages-section">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">👥</div>
+                    <h3 class="advantage-title">5 бригад в штате</h3>
+                    <p class="advantage-text">Профессиональные команды для быстрого выполнения любых объёмов</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">🚜</div>
+                    <h3 class="advantage-title">Техника в собственности</h3>
+                    <p class="advantage-text">Экономия на аренде — доступные цены для вас</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">📐</div>
+                    <h3 class="advantage-title">Геодезист + проектировщик</h3>
+                    <p class="advantage-text">Точные расчёты и профессиональное проектирование</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">✅</div>
+                    <h3 class="advantage-title">Гарантия до 3 лет</h3>
+                    <p class="advantage-text">Уверенность в качестве выполненных работ</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">📅</div>
+                    <h3 class="advantage-title">Работаем с 2014 года</h3>
+                    <p class="advantage-text">11 лет опыта в асфальтировании</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">💼</div>
+                    <h3 class="advantage-title">Профессиональные сметы</h3>
+                    <p class="advantage-text">Прозрачное ценообразование без скрытых платежей</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 4: Описание услуги -->
+    <section class="service-description">
+        <div class="container">
+            <div class="description-content">
+                <div class="description-text">
+                    <h2 class="section-title">Что включает асфальтирование парковок</h2>
+                    <p>Асфальтирование парковки — это комплекс работ, требующий профессионального подхода и точных расчётов. Правильный пирог покрытия обеспечивает долговечность и устойчивость к нагрузкам.</p>
+                    <p>Мы выполняем полный цикл работ:</p>
+                    <ul>
+                        <li>Геодезическая съёмка и проектирование</li>
+                        <li>Подготовка основания и планировка</li>
+                        <li>Укладка песчаной подушки и щебня</li>
+                        <li>Асфальтирование в несколько слоёв</li>
+                        <li>Установка бордюров и ливневой канализации</li>
+                    </ul>
+                    <p>Работаем с объектами любой сложности: от небольших парковок до крупных промышленных территорий.</p>
+                </div>
+                <div class="description-image">
+                    <img src="images/parking-asphalt.jpg" alt="Асфальтирование парковки">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 5: Пироги покрытия -->
+    <section class="pavement-layers">
+        <div class="container">
+            <h2 class="section-title">Варианты пирогов покрытия</h2>
+            <div class="layers-grid">
+                <div class="layer-card">
+                    <h3 class="layer-title">Лёгкая нагрузка</h3>
+                    <p class="layer-subtitle">Пешеходные зоны, тротуары</p>
+                    <div class="layer-structure">
+                        <div class="layer-item">
+                            <span class="layer-number">4</span>
+                            <span class="layer-name">Асфальт 4 см</span>
+                        </div>
+                        <div class="layer-item">
+                            <span class="layer-number">3</span>
+                            <span class="layer-name">Щебень 15 см</span>
+                        </div>
+                        <div class="layer-item">
+                            <span class="layer-number">2</span>
+                            <span class="layer-name">Песок 10 см</span>
+                        </div>
+                        <div class="layer-item">
+                            <span class="layer-number">1</span>
+                            <span class="layer-name">Геотекстиль</span>
+                        </div>
+                    </div>
+                    <div class="layer-price">от 2 800 ₽/м²</div>
+                </div>
+
+                <div class="layer-card featured">
+                    <div class="popular-badge">Популярный</div>
+                    <h3 class="layer-title">Средняя нагрузка</h3>
+                    <p class="layer-subtitle">Парковки легковых авто</p>
+                    <div class="layer-structure">
+                        <div class="layer-item">
+                            <span class="layer-number">4</span>
+                            <span class="layer-name">Асфальт 8 см</span>
+                        </div>
+                        <div class="layer-item">
+                            <span class="layer-number">3</span>
+                            <span class="layer-name">Щебень 20 см</span>
+                        </div>
+                        <div class="layer-item">
+                            <span class="layer-number">2</span>
+                            <span class="layer-name">Песок 15 см</span>
+                        </div>
+                        <div class="layer-item">
+                            <span class="layer-number">1</span>
+                            <span class="layer-name">Геотекстиль</span>
+                        </div>
+                    </div>
+                    <div class="layer-price">от 3 500 ₽/м²</div>
+                </div>
+
+                <div class="layer-card">
+                    <h3 class="layer-title">Высокая нагрузка</h3>
+                    <p class="layer-subtitle">Грузовой транспорт</p>
+                    <div class="layer-structure">
+                        <div class="layer-item">
+                            <span class="layer-number">5</span>
+                            <span class="layer-name">Асфальт верхний 5 см</span>
+                        </div>
+                        <div class="layer-item">
+                            <span class="layer-number">4</span>
+                            <span class="layer-name">Асфальт нижний 5 см</span>
+                        </div>
+                        <div class="layer-item">
+                            <span class="layer-number">3</span>
+                            <span class="layer-name">Щебень 30 см</span>
+                        </div>
+                        <div class="layer-item">
+                            <span class="layer-number">2</span>
+                            <span class="layer-name">Песок 20 см</span>
+                        </div>
+                        <div class="layer-item">
+                            <span class="layer-number">1</span>
+                            <span class="layer-name">Геотекстиль</span>
+                        </div>
+                    </div>
+                    <div class="layer-price">от 4 200 ₽/м²</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 6: Стоимость работ -->
+    <section class="pricing-section">
+        <div class="container">
+            <h2 class="section-title">Примеры реализованных проектов</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-image">
+                        <img src="images/project-300.jpg" alt="Парковка 300 м²">
+                    </div>
+                    <div class="pricing-details">
+                        <h3 class="pricing-title">Парковка 300 м²</h3>
+                        <div class="pricing-params">
+                            <div class="param-row">
+                                <span class="param-label">Площадь:</span>
+                                <span class="param-value">300 м²</span>
+                            </div>
+                            <div class="param-row">
+                                <span class="param-label">Толщина асфальта:</span>
+                                <span class="param-value">8 см</span>
+                            </div>
+                            <div class="param-row">
+                                <span class="param-label">Щебень:</span>
+                                <span class="param-value">20 см</span>
+                            </div>
+                            <div class="param-row">
+                                <span class="param-label">Срок работ:</span>
+                                <span class="param-value">5 дней</span>
+                            </div>
+                        </div>
+                        <div class="pricing-total">
+                            <span class="total-label">Итого:</span>
+                            <span class="total-value">902 650 ₽</span>
+                        </div>
+                        <div class="pricing-per-meter">3 009 ₽/м²</div>
+                    </div>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-image">
+                        <img src="images/project-1000.jpg" alt="Территория 1000 м²">
+                    </div>
+                    <div class="pricing-details">
+                        <h3 class="pricing-title">Территория 1000 м²</h3>
+                        <div class="pricing-params">
+                            <div class="param-row">
+                                <span class="param-label">Площадь:</span>
+                                <span class="param-value">1000 м²</span>
+                            </div>
+                            <div class="param-row">
+                                <span class="param-label">Толщина асфальта:</span>
+                                <span class="param-value">8 см</span>
+                            </div>
+                            <div class="param-row">
+                                <span class="param-label">Щебень:</span>
+                                <span class="param-value">25 см</span>
+                            </div>
+                            <div class="param-row">
+                                <span class="param-label">Срок работ:</span>
+                                <span class="param-value">12 дней</span>
+                            </div>
+                        </div>
+                        <div class="pricing-total">
+                            <span class="total-label">Итого:</span>
+                            <span class="total-value">3 450 000 ₽</span>
+                        </div>
+                        <div class="pricing-per-meter">3 450 ₽/м²</div>
+                    </div>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-image">
+                        <img src="images/project-7550.jpg" alt="Площадь 7550 м²">
+                    </div>
+                    <div class="pricing-details">
+                        <h3 class="pricing-title">Промышленная площадка 7550 м²</h3>
+                        <div class="pricing-params">
+                            <div class="param-row">
+                                <span class="param-label">Площадь:</span>
+                                <span class="param-value">7550 м²</span>
+                            </div>
+                            <div class="param-row">
+                                <span class="param-label">Толщина асфальта:</span>
+                                <span class="param-value">10 см (2 слоя)</span>
+                            </div>
+                            <div class="param-row">
+                                <span class="param-label">Щебень:</span>
+                                <span class="param-value">30 см</span>
+                            </div>
+                            <div class="param-row">
+                                <span class="param-label">Срок работ:</span>
+                                <span class="param-value">45 дней</span>
+                            </div>
+                        </div>
+                        <div class="pricing-total">
+                            <span class="total-label">Итого:</span>
+                            <span class="total-value">36 000 000 ₽</span>
+                        </div>
+                        <div class="pricing-per-meter">4 768 ₽/м²</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 7: Этапы работы -->
+    <section class="stages-section">
+        <div class="container">
+            <h2 class="section-title">Этапы работы</h2>
+            <div class="stages-timeline">
+                <div class="stage-card">
+                    <div class="stage-number">01</div>
+                    <div class="stage-icon">📞</div>
+                    <h3 class="stage-title">Заявка</h3>
+                    <p class="stage-text">Оставьте заявку на сайте или позвоните нам</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-number">02</div>
+                    <div class="stage-icon">📐</div>
+                    <h3 class="stage-title">Выезд геодезиста</h3>
+                    <p class="stage-text">Бесплатный выезд для замеров и оценки объекта</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-number">03</div>
+                    <div class="stage-icon">📋</div>
+                    <h3 class="stage-title">Проект + смета</h3>
+                    <p class="stage-text">Разработка проекта и детальной сметы</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-number">04</div>
+                    <div class="stage-icon">✍️</div>
+                    <h3 class="stage-title">Договор</h3>
+                    <p class="stage-text">Заключение договора с фиксацией сроков</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-number">05</div>
+                    <div class="stage-icon">🚜</div>
+                    <h3 class="stage-title">Работа</h3>
+                    <p class="stage-text">Выполнение работ нашими бригадами</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-number">06</div>
+                    <div class="stage-icon">✅</div>
+                    <h3 class="stage-title">Сдача + гарантия</h3>
+                    <p class="stage-text">Приёмка объекта и гарантия до 3 лет</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 8: Портфолио -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Наши работы</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <img src="images/portfolio-1.jpg" alt="Проект 1">
+                    <div class="portfolio-overlay">
+                        <h4 class="portfolio-title">Парковка ТЦ "Ривьера"</h4>
+                        <p class="portfolio-info">г. Москва, ул. Автозаводская</p>
+                        <p class="portfolio-info">1200 м² • 14 дней • Средняя нагрузка</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="images/portfolio-2.jpg" alt="Проект 2">
+                    <div class="portfolio-overlay">
+                        <h4 class="portfolio-title">Промзона "Северная"</h4>
+                        <p class="portfolio-info">Московская область, Химки</p>
+                        <p class="portfolio-info">5000 м² • 30 дней • Высокая нагрузка</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="images/portfolio-3.jpg" alt="Проект 3">
+                    <div class="portfolio-overlay">
+                        <h4 class="portfolio-title">Двор жилого комплекса</h4>
+                        <p class="portfolio-info">г. Москва, ул. Профсоюзная</p>
+                        <p class="portfolio-info">800 м² • 10 дней • Лёгкая нагрузка</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="images/portfolio-4.jpg" alt="Проект 4">
+                    <div class="portfolio-overlay">
+                        <h4 class="portfolio-title">Складской комплекс</h4>
+                        <p class="portfolio-info">Московская область, Подольск</p>
+                        <p class="portfolio-info">3500 м² • 25 дней • Высокая нагрузка</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="images/portfolio-5.jpg" alt="Проект 5">
+                    <div class="portfolio-overlay">
+                        <h4 class="portfolio-title">Автомойка "Чистота"</h4>
+                        <p class="portfolio-info">г. Москва, Каширское шоссе</p>
+                        <p class="portfolio-info">400 м² • 7 дней • Средняя нагрузка</p>
+                    </div>
+                </div>
+                <div class="portfolio-card">
+                    <img src="images/portfolio-6.jpg" alt="Проект 6">
+                    <div class="portfolio-overlay">
+                        <h4 class="portfolio-title">Тротуары микрорайона</h4>
+                        <p class="portfolio-info">Московская область, Люберцы</p>
+                        <p class="portfolio-info">2200 м² • 18 дней • Лёгкая нагрузка</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 9: Отзывы -->
+    <section class="reviews-section">
+        <div class="container">
+            <h2 class="section-title">Отзывы наших клиентов</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">ИП</div>
+                        <div class="review-author">
+                            <h4 class="author-name">Иван Петрович</h4>
+                            <p class="author-position">Владелец автосервиса</p>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        "Отличная работа! Заасфальтировали парковку возле автосервиса за 5 дней. Всё сделали качественно, с гарантией. Рекомендую!"
+                    </div>
+                    <div class="review-project">Парковка 300 м², г. Москва</div>
+                    <div class="review-image">
+                        <img src="images/review-1.jpg" alt="Отзыв 1">
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">АС</div>
+                        <div class="review-author">
+                            <h4 class="author-name">Анна Сергеевна</h4>
+                            <p class="author-position">Директор ТЦ</p>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        "Профессиональный подход к делу. Геодезист приехал на следующий день, смету сделали быстро. Работы выполнили в срок, цена не изменилась."
+                    </div>
+                    <div class="review-project">Парковка ТЦ 1200 м², Москва</div>
+                    <div class="review-image">
+                        <img src="images/review-2.jpg" alt="Отзыв 2">
+                    </div>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-avatar">МВ</div>
+                        <div class="review-author">
+                            <h4 class="author-name">Михаил Викторович</h4>
+                            <p class="author-position">Владелец склада</p>
+                        </div>
+                    </div>
+                    <div class="review-text">
+                        "Нужно было заасфальтировать большую площадь под грузовые машины. Транском справились на отлично! Пирог сделали прочный, асфальт держится уже 2 года."
+                    </div>
+                    <div class="review-project">Складская территория 5000 м², Химки</div>
+                    <div class="review-image">
+                        <img src="images/review-3.jpg" alt="Отзыв 3">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 10: Почему выбирают Транском -->
+    <section class="why-us-section">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают Транском</h2>
+            <div class="why-us-grid">
+                <div class="why-card">
+                    <div class="why-number">11+</div>
+                    <h3 class="why-title">лет на рынке</h3>
+                    <p class="why-text">Опыт работы с 2014 года</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-number">500+</div>
+                    <h3 class="why-title">реализованных проектов</h3>
+                    <p class="why-text">Любой сложности и масштаба</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-number">100%</div>
+                    <h3 class="why-title">своя техника</h3>
+                    <p class="why-text">Экономия 15-20% на аренде</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-number">3 года</div>
+                    <h3 class="why-title">гарантия</h3>
+                    <p class="why-text">На все виды работ</p>
+                </div>
+            </div>
+            <div class="why-features">
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-text">
+                        <h4>Инженерный подход</h4>
+                        <p>Геодезисты и проектировщики в штате</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-text">
+                        <h4>Прозрачные сметы</h4>
+                        <p>Детальный расчёт без скрытых платежей</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 11: Полный квиз -->
+    <section class="quiz-section">
+        <div class="container">
+            <div class="quiz-card">
+                <div class="quiz-header">
+                    <h2 class="quiz-title">Подберём оптимальное решение для вашего объекта</h2>
+                    <p class="quiz-subtitle">Ответьте на 6 вопросов — получите точный расчёт и 3 варианта пирога</p>
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressBar"></div>
+                        </div>
+                        <div class="progress-text">Вопрос <span id="currentQuestion">1</span> из 6</div>
+                    </div>
+                </div>
+
+                <form class="quiz-form" id="fullQuiz">
+                    <div class="quiz-step active" data-step="1">
+                        <h3 class="quiz-question">Что нужно заасфальтировать?</h3>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="parking">
+                                <span class="option-content">
+                                    <span class="option-icon">🚗</span>
+                                    <span class="option-text">Парковку</span>
+                                </span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="driveway">
+                                <span class="option-content">
+                                    <span class="option-icon">🏡</span>
+                                    <span class="option-text">Подъездной путь</span>
+                                </span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="yard">
+                                <span class="option-content">
+                                    <span class="option-icon">🏘️</span>
+                                    <span class="option-text">Двор</span>
+                                </span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q1" value="industrial">
+                                <span class="option-content">
+                                    <span class="option-icon">🏭</span>
+                                    <span class="option-text">Промзону</span>
+                                </span>
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="quizNext(2)">Далее</button>
+                    </div>
+
+                    <div class="quiz-step" data-step="2">
+                        <h3 class="quiz-question">Какая площадь объекта?</h3>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q2" value="small">
+                                <span class="option-content">
+                                    <span class="option-text">До 100 м²</span>
+                                </span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q2" value="medium">
+                                <span class="option-content">
+                                    <span class="option-text">100-500 м²</span>
+                                </span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q2" value="large">
+                                <span class="option-content">
+                                    <span class="option-text">500-1000 м²</span>
+                                </span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q2" value="xlarge">
+                                <span class="option-content">
+                                    <span class="option-text">Более 1000 м²</span>
+                                </span>
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="quizNext(3)">Далее</button>
+                    </div>
+
+                    <div class="quiz-step" data-step="3">
+                        <h3 class="quiz-question">Какая будет нагрузка?</h3>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q3" value="light">
+                                <span class="option-content">
+                                    <span class="option-icon">🚶</span>
+                                    <span class="option-text">Пешеходы</span>
+                                </span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q3" value="medium">
+                                <span class="option-content">
+                                    <span class="option-icon">🚗</span>
+                                    <span class="option-text">Легковые авто</span>
+                                </span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q3" value="heavy">
+                                <span class="option-content">
+                                    <span class="option-icon">🚛</span>
+                                    <span class="option-text">Грузовой транспорт</span>
+                                </span>
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="quizNext(4)">Далее</button>
+                    </div>
+
+                    <div class="quiz-step" data-step="4">
+                        <h3 class="quiz-question">Что на объекте сейчас?</h3>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q4" value="ground">
+                                <span class="option-content">
+                                    <span class="option-text">Грунт</span>
+                                </span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q4" value="gravel">
+                                <span class="option-content">
+                                    <span class="option-text">Щебень</span>
+                                </span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q4" value="old-asphalt">
+                                <span class="option-content">
+                                    <span class="option-text">Старый асфальт</span>
+                                </span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q4" value="concrete">
+                                <span class="option-content">
+                                    <span class="option-text">Бетон</span>
+                                </span>
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="quizNext(5)">Далее</button>
+                    </div>
+
+                    <div class="quiz-step" data-step="5">
+                        <h3 class="quiz-question">Когда планируете начать?</h3>
+                        <div class="quiz-options">
+                            <label class="quiz-option">
+                                <input type="radio" name="q5" value="urgent">
+                                <span class="option-content">
+                                    <span class="option-text">Срочно (1-2 недели)</span>
+                                </span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q5" value="soon">
+                                <span class="option-content">
+                                    <span class="option-text">В ближайший месяц</span>
+                                </span>
+                            </label>
+                            <label class="quiz-option">
+                                <input type="radio" name="q5" value="planning">
+                                <span class="option-content">
+                                    <span class="option-text">Планирую (2-3 месяца)</span>
+                                </span>
+                            </label>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="quizNext(6)">Далее</button>
+                    </div>
+
+                    <div class="quiz-step" data-step="6">
+                        <h3 class="quiz-question">Куда отправить расчёт?</h3>
+                        <div class="quiz-contacts">
+                            <input type="text" name="name" class="form-input" placeholder="Ваше имя" required>
+                            <input type="tel" name="phone" class="form-input" placeholder="Телефон" required>
+                            <input type="email" name="email" class="form-input" placeholder="Email (опционально)">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-large">Получить расчёт и варианты пирога</button>
+                        <p class="quiz-privacy">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 12: Форма заявки -->
+    <section class="contact-form-section">
+        <div class="container">
+            <div class="contact-form-card">
+                <h2 class="form-title">Получите точный расчёт в течение 15 минут</h2>
+                <p class="form-subtitle">Оставьте заявку — наш специалист свяжется с вами для уточнения деталей</p>
+                <form class="contact-form" id="contactForm">
+                    <input type="text" name="name" class="form-input-large" placeholder="Ваше имя" required>
+                    <input type="tel" name="phone" class="form-input-large" placeholder="Телефон" required>
+                    <textarea name="message" class="form-textarea" placeholder="Опишите ваш объект (необязательно)" rows="4"></textarea>
+                    <button type="submit" class="btn btn-primary btn-large">Получить расчёт</button>
+                    <p class="form-privacy">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 13: Контакты и карта -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3 class="footer-title">Контакты</h3>
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <div class="contact-details">
+                            <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+                            <a href="tel:+79251234567">+7 (925) 123-45-67</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <div class="contact-details">
+                            <a href="mailto:info@transkom.ru">info@transkom.ru</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div class="contact-details">
+                            <p>г. Москва, ул. Примерная, д. 1</p>
+                            <p>Работаем: Пн-Вс, 8:00-20:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-map">
+                    <div id="map" style="width: 100%; height: 400px; background: #e0e0e0; border-radius: 8px;" role="application" aria-label="Карта с местоположением офиса">
+                        <!-- Для интеграции карты добавьте свой API ключ Яндекс.Карт -->
+                        <!-- <script src="https://api-maps.yandex.ru/2.1/?apikey=YOUR_API_KEY&lang=ru_RU" type="text/javascript"></script> -->
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2014-2025 Транском. Асфальтирование в Москве и МО</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
